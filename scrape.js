@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
+
 let firstPageNum = null;
 let lastPageNum = null;
 
@@ -47,6 +49,7 @@ let scrape = async () => {
 	return allData;
 };
 
-scrape().then((value) => {
-    console.log(value);
+scrape().then((results) => {
+    console.log(results);
+	fs.writeFile('./results.json', JSON.stringify(results), err => err ? console.log(err): null);    
 });
